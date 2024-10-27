@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import localFont from "next/font/local";
 import "./globals.css";
+import BackgroundAudio from "@/components/sound";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,8 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
+                <BackgroundAudio/>
+
           <div className="">
             {children}</div> 
         </body>

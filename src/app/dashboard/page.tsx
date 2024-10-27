@@ -4,7 +4,8 @@ import { Badge } from "@/components/ui/badge"
 import { Code, Cpu, Globe, Server } from "lucide-react"
 import { redirect } from "next/navigation";
 import { getSession } from "@auth0/nextjs-auth0";
-import NavBar from "@/components/navbar";
+import Link from "next/link";
+import { CompleteUserRegistration } from "@/actions/auth";
 
 export default async function Dashboard() {
     const session = await getSession();
@@ -13,37 +14,39 @@ export default async function Dashboard() {
       redirect("/api/auth/login");
     }
 
+    await CompleteUserRegistration(user.email)
+
   const courses = [
     {
       title: "Web Development Fundamentals",
       description: "Learn HTML, CSS, and JavaScript to build modern websites.",
       icon: <Globe className="h-8 w-8 text-primary" />,
       level: "Beginner",
-      duration: "8 weeks",
+      link: "web-dev",
       enrolled: 0,
     },
     {
-      title: "Python for Data Science",
-      description: "Master Python programming for data analysis and machine learning.",
+      title: "Intro to Python",
+      description: "Learn Python programming for data analysis and machine learning.",
       icon: <Code className="h-8 w-8 text-primary" />,
-      level: "Intermediate",
-      duration: "10 weeks",
+      level: "Beginner",
+      link: "python",
       enrolled: 0,
     },
     {
-      title: "Full-Stack JavaScript",
-      description: "Build complete web applications with Node.js, Express, and React.",
+      title: "Javascript",
+      description: "Learn Javascript for web development",
       icon: <Server className="h-8 w-8 text-primary" />,
-      level: "Advanced",
-      duration: "12 weeks",
+      level: "Beginner",
+      link: "javascript",
       enrolled: 0,
     },
     {
-      title: "Machine Learning Essentials",
-      description: "Dive into machine learning algorithms and practical applications.",
+      title: "Browser Development Tools",
+      description: "Interact and manipulate your website in realtime",
       icon: <Cpu className="h-8 w-8 text-primary" />,
-      level: "Advanced",
-      duration: "14 weeks",
+      level: "Beginner",
+      link: "dev-tools",
       enrolled: 0,
     },
   ]
@@ -51,16 +54,16 @@ export default async function Dashboard() {
   return (
     <div
     style={{
-        backgroundImage: 'url("/images/dashboard-image.jpg")', // replace with your image path
+        backgroundImage: 'url("/images/dashboard-image.jpg")', 
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        minHeight: '100vh', // makes sure it covers the full height
+        minHeight: '100vh', 
     }}>
         
-    <h1 className="text-3xl font-bold mb-6 pt-10 px-7">Your Courses</h1>
+    <h1 className="text-4xl font-bold mb-6 pt-10 px-7">Courses</h1>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-7">
         {courses.map((course, index) => (
-            <Card key={index} className="flex flex-col">
+          <Card key={index} className="flex flex-col">
                 <CardHeader>
                     <div className="flex items-center justify-between">
                         {course.icon}
@@ -71,12 +74,11 @@ export default async function Dashboard() {
                 </CardHeader>
                 <CardContent className="flex-grow">
                     <div className="flex justify-between text-sm text-muted-foreground">
-                        <span>Duration: {course.duration}</span>
-                        <span>{course.enrolled.toLocaleString()} enrolled</span>
+                        <span>{course.enrolled.toLocaleString()} % completed</span>
                     </div>
                 </CardContent>
                 <CardFooter>
-                    <Button className="w-full bg-orange-400 text-white">Start</Button>
+                    <Link className="bg-orange-400 text-white w-full p-2 text-center hover:opacity-80" href={`courses/${course.link}`}>Start</Link>
                 </CardFooter>
             </Card>
         ))}
