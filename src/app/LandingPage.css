@@ -1,0 +1,117 @@
+/* Reset body styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', 'Roboto', sans-serif;
+    background-color: rgb(18, 18, 18);
+    overflow: hidden; /* Prevent scrollbars */
+    }
+    
+    /* Landing page container with the background image */
+    .landing-page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/images/house.png'); /* Make sure the image is correctly placed in public/images */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    }
+    
+    /* Overlay for better readability */
+    .overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    }
+    
+    /* Game title with slide-in and color glow animation */
+    .game-title {
+    color: rgb(255, 189, 89);
+    font-size: 72px;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
+    margin-bottom: 30px;
+    text-align: center;
+    letter-spacing: 2px;
+    font-weight: bold;
+    animation: slideInAndGlow 2s ease-out, spookyGlow 3s infinite alternate;
+    }
+    
+    /* Keyframes for slide-down animation */
+    @keyframes slideInAndGlow {
+    0% {
+    transform: translateY(-50px);
+    opacity: 0;
+    }
+    100% {
+    transform: translateY(0);
+    opacity: 1;
+    }
+    }
+    
+    /* Keyframes for spooky glow animation */
+    @keyframes spookyGlow {
+    0% {
+    color: rgb(255, 189, 89); /* Orange */
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
+    }
+    50% {
+    color: rgb(236, 162, 255); /* Purple */
+    text-shadow: 6px 6px 15px rgba(0, 0, 0, 0.9);
+    }
+    100% {
+    color: rgb(255, 89, 89); /* Red */
+    text-shadow: 8px 8px 20px rgba(0, 0, 0, 1);
+    }
+    }
+    
+    /* Start button with pulse animation */
+    .start-button {
+    padding: 20px 40px;
+    font-size: 28px;
+    background: linear-gradient(45deg, #ff5722, #ff8a50);
+    color: #FFFFFF;;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    animation: pulse 2s infinite; /* Pulse animation */
+    }
+    
+    /* Hover effect on the button */
+    .start-button:hover {
+    background: linear-gradient(45deg, #e64a19, #ff7043);
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* Keyframes for button pulse animation */
+    @keyframes pulse {
+    0%, 100% {
+    transform: scale(1);
+    }
+    50% {
+    transform: scale(1.08); /* Bounce effect */
+    }
+    }
+    
+    /* Responsive styling for smaller screens */
+    @media (max-width: 768px) {
+    .game-title {
+    font-size: 48px;
+    }
+    .start-button {
+    font-size: 24px;
+    padding: 15px 30px;
+    }
+    }
