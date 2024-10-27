@@ -49,32 +49,38 @@ export default async function Dashboard() {
   ]
 
   return (
-    <div>
-        <NavBar/>
-      <h1 className="text-3xl font-bold mb-6 mt-20">Your Courses</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div
+    style={{
+        backgroundImage: 'url("/images/dashboard-image.jpg")', // replace with your image path
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        minHeight: '100vh', // makes sure it covers the full height
+    }}>
+        
+    <h1 className="text-3xl font-bold mb-6 pt-10 px-7">Your Courses</h1>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-7">
         {courses.map((course, index) => (
-          <Card key={index} className="flex flex-col">
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                {course.icon}
-                <Badge>{course.level}</Badge>
-              </div>
-              <CardTitle className="mt-4">{course.title}</CardTitle>
-              <CardDescription>{course.description}</CardDescription>
-            </CardHeader>
-            <CardContent className="flex-grow">
-              <div className="flex justify-between text-sm text-muted-foreground">
-                <span>Duration: {course.duration}</span>
-                <span>{course.enrolled.toLocaleString()} enrolled</span>
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button className="w-full bg-orange-400 text-white">Start</Button>
-            </CardFooter>
-          </Card>
+            <Card key={index} className="flex flex-col">
+                <CardHeader>
+                    <div className="flex items-center justify-between">
+                        {course.icon}
+                        <Badge>{course.level}</Badge>
+                    </div>
+                    <CardTitle className="mt-4">{course.title}</CardTitle>
+                    <CardDescription>{course.description}</CardDescription>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                    <div className="flex justify-between text-sm text-muted-foreground">
+                        <span>Duration: {course.duration}</span>
+                        <span>{course.enrolled.toLocaleString()} enrolled</span>
+                    </div>
+                </CardContent>
+                <CardFooter>
+                    <Button className="w-full bg-orange-400 text-white">Start</Button>
+                </CardFooter>
+            </Card>
         ))}
-      </div>
     </div>
+</div>
   )
 }
